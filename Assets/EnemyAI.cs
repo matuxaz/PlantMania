@@ -40,10 +40,9 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        beeObject = GameObject.Find("BeeObject");
 
-        bucket = beeObject.transform.GetChild(0).GetChild(0).gameObject;
-        blade = beeObject.transform.GetChild(0).GetChild(1).gameObject;
+        bucket = transform.GetChild(0).GetChild(0).gameObject;
+        blade = transform.GetChild(0).GetChild(1).gameObject;
 
     }
     void Update()
@@ -74,6 +73,10 @@ public class EnemyAI : MonoBehaviour
         {
             transform.position += transform.up * moveSpeed * heightSpeed * Time.deltaTime;
         }
+        if(other.gameObject.tag == "Enemy")
+        {
+            transform.position = Vector2.MoveTowards(transform.position, other.transform.position, -1 * Time.deltaTime);
+        }
     }
     void moveToPlayer()
     {
@@ -95,7 +98,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, -Vector3.up, out hit))
         {
-            Debug.Log(hit.distance);
             Debug.DrawLine(transform.position, hit.point, Color.cyan);
 
             if(hit.distance < height - 0.4) //making the height less exact by adding or subtracting 0.2 to avoid jitter

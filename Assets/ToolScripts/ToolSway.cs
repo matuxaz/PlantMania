@@ -26,7 +26,7 @@ public class ToolSway : MonoBehaviour
 
     private void Start()
     {
-        pm = FindObjectOfType<PlayerMovement>(); //refference to get isGrounded from PlayerMovement
+        pm = FindObjectOfType<PlayerMovement>(); //reference to get isGrounded from PlayerMovement
     }
 
     void Update()
