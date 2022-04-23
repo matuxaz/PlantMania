@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     GameObject bucket;
     GameObject blade;
 
-    public float rotationSpeed = 6f;
+    public float rotationSpeed = 8f;
     public float moveSpeed = 3f;
     public float viewDistance = 15f;
     public LayerMask playerMask;
@@ -33,8 +33,8 @@ public class EnemyAI : MonoBehaviour
 
     RaycastHit hit;
     public float flyHeight = 4f;
-    public float chaseHeight = 3f;
-    public float heightSpeed = 2f;
+    public float chaseHeight = 2f;
+    public float heightSpeed = 6f;
 
     void Start()
     {
@@ -83,7 +83,7 @@ public class EnemyAI : MonoBehaviour
             blade.SetActive(true);
         }
         //rotation to player
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.position - transform.position), Time.deltaTime * rotationSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.position - transform.position + new Vector3(0f, 1f, 0f)), Time.deltaTime * rotationSpeed);
 
         //moving to player
         transform.position += transform.forward * moveSpeed * 3 * Time.deltaTime;
@@ -98,11 +98,11 @@ public class EnemyAI : MonoBehaviour
             Debug.Log(hit.distance);
             Debug.DrawLine(transform.position, hit.point, Color.cyan);
 
-            if(hit.distance < height - 0.2) //making the height less exact by adding or subtracting 0.2 to avoid jitter
+            if(hit.distance < height - 0.4) //making the height less exact by adding or subtracting 0.2 to avoid jitter
             {
                 transform.position += transform.up * heightSpeed * Time.deltaTime;
             }
-            if (hit.distance > height + 0.2)
+            if (hit.distance > height + 0.4)
             {
                 transform.position -= transform.up * heightSpeed * Time.deltaTime;
             }
