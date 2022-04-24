@@ -4875,6 +4875,9 @@ GameObject:
   - component: {fileID: 4319700767081669179}
   - component: {fileID: 2662639027835676526}
   - component: {fileID: 2191655137260673864}
+  - component: {fileID: -5628631810251905698}
+  - component: {fileID: 4033373758346491290}
+  - component: {fileID: -4384968658595947601}
   m_Layer: 0
   m_Name: vfx_Seed
   m_TagString: Bullet
@@ -4938,6 +4941,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e368348ca6d2a643af4b0a5931cbf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plantType: 2
+  palmPart: {fileID: 2812601504272205409, guid: 67a80d79e61088840bd9862bed34d489, type: 3}
+  palmMaxAngle: 12.5
+  vinePointCount: 100
+  vineMaxBranches: 5
+  vineMinBranches: 3
 --- !u!114 &2191655137260673864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4967,3 +4976,58 @@ MonoBehaviour:
   petalSpread: 30
   thornProbabilityDivisor: 7
   leafProbabilityDivisor: 7
+--- !u!114 &-5628631810251905698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845170915950651333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451f007423fafe6469166cb8cca60e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  part: {fileID: 2812601504272205409, guid: 67a80d79e61088840bd9862bed34d489, type: 3}
+  maxAngle: 12.5
+  maxPartCount: 14
+  subsequentScaleRatio: 0.95
+  upwardsBias: 0.925
+  chaosFactor: 175
+--- !u!114 &4033373758346491290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845170915950651333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731bb9af5d3ae4b489b14edbf07663b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leaf: {fileID: 835482662954054714, guid: f22848dc8698e55489c02e4cc4f1f8f1, type: 3}
+  coconut: {fileID: 6178327081756610280, guid: 65990a71709e4984983bdf589ef4beca, type: 3}
+  leafOffsetAngle: 30
+  posOffset: 0.2
+--- !u!114 &-4384968658595947601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845170915950651333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b7e59b426ef214db110b5c07e31b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vinePart: {fileID: 3296905756077184392, guid: 7968571c23ee1464f9315e43549d1339, type: 3}
+  vineLeaf: {fileID: 7750939352459219629, guid: 910c9ce69d1f08945b6cae403fcd9074, type: 3}
+  childProbabilityDivisor: 30
+  stepDistance: 1
+  pointCountFalloff: 0.5
+  maxTerrainAngle: 10
+  leafProbabilityDivisor: 0
+  curviness: 20
+  size: 1
