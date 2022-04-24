@@ -6,7 +6,7 @@ public class SeedProjectile : MonoBehaviour
 {
     void Start()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 15);
     }
     private bool collided;
     private void OnCollisionEnter(Collision c)
@@ -14,7 +14,9 @@ public class SeedProjectile : MonoBehaviour
         if (c.gameObject.tag != "Bullet" && !collided)
         {
             collided = true;
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject, 5);
+
+            gameObject.GetComponent<FlowerGrow_v2>().spawnFlower(c.contacts[0].point);
         }
     }
 }

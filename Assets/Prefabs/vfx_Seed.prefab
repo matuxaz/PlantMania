@@ -4874,6 +4874,7 @@ GameObject:
   - component: {fileID: 5288829330771640442}
   - component: {fileID: 4319700767081669179}
   - component: {fileID: 2662639027835676526}
+  - component: {fileID: 2191655137260673864}
   m_Layer: 0
   m_Name: vfx_Seed
   m_TagString: Bullet
@@ -4937,3 +4938,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e368348ca6d2a643af4b0a5931cbf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2191655137260673864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845170915950651333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67478573502ffac49bc97fdfdf8b03d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowerPart: {fileID: 2297504814831194188, guid: 4a9970dbb2692bf48834dd55c2353617, type: 3}
+  flowerBud: {fileID: 5418489872966557892, guid: 4d6d21e9011361e4798d21fbddef088f, type: 3}
+  flowerPetal: {fileID: 3405937490084270718, guid: 7a4074192106dfd4d94f3907221ce469, type: 3}
+  flowerThorn: {fileID: 7241453398595778327, guid: c01075710e478d2458c0d4232a874590, type: 3}
+  flowerLeaf:
+  - {fileID: 1568425313963545155, guid: c50a327de41952649863da3601e1fddb, type: 3}
+  - {fileID: 2950567950319482511, guid: 34777fb1cf6acbc43a59b410f9b8e060, type: 3}
+  growSpeed: 30
+  incrementSize: 0.01
+  size: 2
+  pointRadiusMultiplier: 1
+  minPointDistance: 2
+  maxPointDistance: 3
+  petalCount: 40
+  petalSpread: 30
+  thornProbabilityDivisor: 7
+  leafProbabilityDivisor: 7
