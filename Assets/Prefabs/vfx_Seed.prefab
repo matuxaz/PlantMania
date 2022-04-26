@@ -4941,7 +4941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e368348ca6d2a643af4b0a5931cbf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantType: 2
+  plantType: 0
   palmPart: {fileID: 2812601504272205409, guid: 67a80d79e61088840bd9862bed34d489, type: 3}
   palmMaxAngle: 12.5
   vinePointCount: 100
