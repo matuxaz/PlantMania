@@ -23,6 +23,14 @@ public class PlayerCameraMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!PauseMenuScript.gameIsPaused)
+        {
+            moveCamera();
+        }
+    }
+
+    void moveCamera()
+    {
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
 

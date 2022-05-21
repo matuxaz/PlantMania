@@ -34,7 +34,23 @@ public class RockerProjectile : MonoBehaviour
 
             Explosion();
 
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy" && !collided)
+        {
+            collided = true;
+            position = GetComponent<Rigidbody>().position;
+            rotation = GetComponent<Rigidbody>().rotation;
+
+            GameObject expVfx = Instantiate(explosionVfx, position, rotation); //creating and destroying explosion
+            Destroy(expVfx, 5);
+
+            Explosion();
+            Destroy(gameObject, 0.1f);
         }
     }
 

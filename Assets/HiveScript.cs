@@ -1,24 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HiveScript : MonoBehaviour
 {
     public GameObject bee;
     public Transform spawnPoint;
-    public float spawnTime = 1000;
+    public float spawnTime = 3000;
 
-    public float i = 0;
+    [SerializeField] private Image loader;
+
+    public float i = 1;
 
     void Update()
     {
-       
-        if(i >= spawnTime)
+        loader.fillAmount = i / spawnTime;
+        Debug.Log(i / spawnTime * 100);
+
+        if (!PauseMenuScript.gameIsPaused)
         {
-            InstantiateBee(spawnPoint);
-            i = 0;
+            if (i >= spawnTime)
+            {
+                InstantiateBee(spawnPoint);
+                i = 0;
+            }
+            i++;
         }
-        i++;
+        
     }
 
     private void InstantiateBee(Transform spawnPoint) //create bee at spawnpoint

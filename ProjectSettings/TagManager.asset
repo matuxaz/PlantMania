@@ -8,6 +8,8 @@ TagManager:
   - PlayerBody
   - Ground
   - Enemy
+  - Part
+  - CameraPosition
   layers:
   - Default
   - TransparentFX

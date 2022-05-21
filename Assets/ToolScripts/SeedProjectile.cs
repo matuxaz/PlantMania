@@ -26,7 +26,8 @@ public class SeedProjectile : MonoBehaviour
     private bool collided;
     private void OnCollisionEnter(Collision c)
     {
-        if (c.gameObject.tag != "Bullet" && !collided)
+
+        if (c.gameObject.tag != "Bullet" && !collided && c.gameObject.tag != "Enemy")
         {
             collided = true;
             Destroy(gameObject, 5);
@@ -48,6 +49,20 @@ public class SeedProjectile : MonoBehaviour
             {
                 SpawnVine(c);
             }
+        }
+        if (c.gameObject.tag == "Enemy" && !collided)
+        {
+            collided = true;
+            Destroy(gameObject, 0.1f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy" && !collided)
+        {
+            collided = true;
+            Destroy(gameObject, 0.1f);
         }
     }
 

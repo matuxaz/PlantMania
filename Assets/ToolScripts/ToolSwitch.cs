@@ -42,6 +42,10 @@ public class ToolSwitch : MonoBehaviour
         {
             selectedWeapon = 2;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            selectedWeapon = 3;
+        }
 
         if (previousWeapon != selectedWeapon || weaponDown) //do switching if player switched or the switching hasn't ended yet
         {

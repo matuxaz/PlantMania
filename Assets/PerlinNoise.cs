@@ -5,10 +5,20 @@ using UnityEngine;
 
 public static class PerlinNoise
 {
-
     public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset)
     {
         float[,] noiseMap = new float[mapWidth, mapHeight];
+
+        if(MenuScript.inputSeed == 0)
+        {
+            seed = Random.Range(1, 99999);
+        }
+        else
+        {
+            seed = MenuScript.inputSeed;
+        }
+
+        
 
         System.Random prng = new System.Random(seed); //using a seed to offset the octaves values
         Vector2[] octaveOffsets = new Vector2[octaves];

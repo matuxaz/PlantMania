@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -10,10 +11,18 @@ public class EnemyAI : MonoBehaviour
     GameObject bucket;
     GameObject blade;
 
+    public GameObject blood;
+    public GameObject deathExplosion;
+
     public float rotationSpeed = 8f;
     public float moveSpeed = 3f;
     public float viewDistance = 15f;
     public LayerMask playerMask;
+
+    [SerializeField] private Image enemyHealthBar; 
+    public float enemyHealth = 100f;
+    public float maxHealth = 100f;
+    public float damage = 20f;
 
     public float chooseTime = 2f;
     public float elapsedTime;
@@ -48,6 +57,8 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
 
+        manageHealth();
+
         canFindPlayer = Physics.CheckSphere(transform.position, viewDistance, playerMask);
         if (canFindPlayer)
         {
@@ -63,6 +74,20 @@ public class EnemyAI : MonoBehaviour
         }
             
     }
+
+    private void manageHealth()
+    {
+        enemyHealthBar.fillAmount = enemyHealth / maxHealth;
+        if(enemyHealth <= 0)
+        {
+            GameObject deathVfx = Instantiate(deathExplosion, transform.position, rotation); //creating and destroying blood;
+            Destroy(deathVfx, 5);
+            Destroy(gameObject);
+        }
+
+        
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "PlayerBody")
@@ -76,6 +101,13 @@ public class EnemyAI : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
             transform.position = Vector2.MoveTowards(transform.position, other.transform.position, -1 * Time.deltaTime);
+        }
+        if (other.gameObject.tag == "Bullet")
+        {
+            enemyHealth -= damage;
+
+            GameObject bloodVfx = Instantiate(blood, transform.position, rotation); //creating and destroying blood;
+            Destroy(bloodVfx, 5);
         }
     }
     void moveToPlayer()
