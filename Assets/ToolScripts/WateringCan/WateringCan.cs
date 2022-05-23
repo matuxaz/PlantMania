@@ -13,7 +13,7 @@ public class WateringCan : MonoBehaviour
     public Transform fillPoint;
 
     public LayerMask mask;
-    public float reach = 3f;
+    public float reach = 4f;
     [SerializeField] private Text fillText;
 
     public float speed = 10;
@@ -82,7 +82,6 @@ public class WateringCan : MonoBehaviour
 
     private void manageFilling()
     {
-        Debug.DrawRay(cam.transform.position, cam.transform.forward * reach, Color.green);
 
         Ray fillRay = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit fillHit;

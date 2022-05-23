@@ -38,9 +38,6 @@ public class TerrainGeneration : MonoBehaviour
 
     public void generateMap() //generating a color map
     {
-
-
-
         float[,] noiseMap = PerlinNoise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
 
         Color[] colorMap = new Color[mapWidth * mapHeight]; //creating the color map from a noisemap

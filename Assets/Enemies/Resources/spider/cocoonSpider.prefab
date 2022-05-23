@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spider: {fileID: 3776423223938478557, guid: c0cb4cac3ab05244a9dafdcd233d3260, type: 3}
   spawnPoint: {fileID: 7910836466174302603}
-  spawnTime: 4000
+  spawnTime: 5000
   loader: {fileID: 7910836466934867125}
   i: 1
 --- !u!1 &7910836466174302602

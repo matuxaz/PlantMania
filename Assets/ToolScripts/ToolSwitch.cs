@@ -20,14 +20,12 @@ public class ToolSwitch : MonoBehaviour
     [SerializeField] private Text ammoText;
 
     [SerializeField] private Image infiniteAmmo;
-    [SerializeField] private Image rocketLoader;
 
     [SerializeField] private Text fillText;
 
     void Start()
     {
         fillText.enabled = false;
-        rocketLoader.enabled = false;
     }
 
     void Update()

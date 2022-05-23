@@ -7,7 +7,7 @@ public class HiveScript : MonoBehaviour
 {
     public GameObject bee;
     public Transform spawnPoint;
-    public float spawnTime = 3000;
+    public float spawnTime = 4000;
 
     [SerializeField] private Image loader;
 

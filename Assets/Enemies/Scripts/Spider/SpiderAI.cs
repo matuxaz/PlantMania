@@ -12,7 +12,7 @@ public class SpiderAI : MonoBehaviour
 
     public float rotationSpeed = 4f;
     public float moveSpeed = 6f;
-    public float viewDistance = 20f;
+    public float viewDistance = 30f;
     public LayerMask playerMask;
 
     [SerializeField] private Image enemyHealthBar;

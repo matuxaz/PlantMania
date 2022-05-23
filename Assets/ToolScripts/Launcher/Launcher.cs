@@ -20,20 +20,9 @@ public class Launcher : MonoBehaviour
 
     private float oldTime;
 
-    [SerializeField] private Image rocketLoader;
 
     private void Update()
     {
-        if(Time.time >= timeToFire)
-        {
-            rocketLoader.enabled = false;
-        }
-        else
-        {
-            rocketLoader.enabled = true;
-            rocketLoader.fillAmount = Time.time / timeToFire;
-            Debug.Log(oldTime);
-        }
 
         if (Input.GetButtonDown("Fire1") && Time.time >= timeToFire && !PauseMenuScript.gameIsPaused)
         {

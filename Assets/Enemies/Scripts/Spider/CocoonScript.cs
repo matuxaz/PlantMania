@@ -7,7 +7,7 @@ public class CocoonScript : MonoBehaviour
 {
     public GameObject spider;
     public Transform spawnPoint;
-    public float spawnTime = 4000;
+    public float spawnTime = 5000;
 
     [SerializeField] private Image loader;
 

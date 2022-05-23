@@ -4937,7 +4937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e368348ca6d2a643af4b0a5931cbf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantType: 1
+  plantType: 2
   palmSeed: {fileID: 5378297960628281716, guid: 728936b69ef5b224e8d7c4edead56e89, type: 3}
   flowerSeed: {fileID: 6628133137414854894, guid: ea54567916afbc247ba103230507e227, type: 3}
   vineSeed: {fileID: 7563734301971355631, guid: d3b684e32a0b90542b6b732b21c7a740, type: 3}

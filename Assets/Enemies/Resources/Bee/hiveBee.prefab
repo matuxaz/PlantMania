@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bee: {fileID: 6212318969130651733, guid: e11b19c35a4564d499bedfa4c2575640, type: 3}
   spawnPoint: {fileID: 2072941205227095685}
-  spawnTime: 3000
+  spawnTime: 4000
   loader: {fileID: 2072941205070896408}
   i: 0
 --- !u!136 &1154602497507130662

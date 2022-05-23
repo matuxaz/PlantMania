@@ -155,7 +155,7 @@ MonoBehaviour:
   deathExplosion: {fileID: 6188372640795539148, guid: db36617ee011d3c4f9fc21af3ef5e28c, type: 3}
   rotationSpeed: 6
   moveSpeed: 4
-  viewDistance: 30
+  viewDistance: 25
   playerMask:
     serializedVersion: 2
     m_Bits: 128
