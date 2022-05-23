@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class FlowerSeed : MonoBehaviour
 {
-    public Vector3 spawnCoords = Vector3.zero;
-
-    public void GrowFlower()
-    {
-        gameObject.GetComponent<FlowerGrow_v2>().spawnFlower(spawnCoords);
-    }
+    FlowerGrow_v2 flower;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        flower = gameObject.GetComponent<FlowerGrow_v2>();
+        flower.spawnFlower(transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter(Collision c)
+    {
+        if (c.gameObject.tag == "Water")
+        {
+            flower.Water();
+        }
     }
 }

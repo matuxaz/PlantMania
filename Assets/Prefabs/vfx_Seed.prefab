@@ -4874,10 +4874,6 @@ GameObject:
   - component: {fileID: 5288829330771640442}
   - component: {fileID: 4319700767081669179}
   - component: {fileID: 2662639027835676526}
-  - component: {fileID: 2191655137260673864}
-  - component: {fileID: -5628631810251905698}
-  - component: {fileID: 4033373758346491290}
-  - component: {fileID: -4384968658595947601}
   m_Layer: 0
   m_Name: vfx_Seed
   m_TagString: Bullet
@@ -4941,93 +4937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e368348ca6d2a643af4b0a5931cbf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantType: 2
-  palmPart: {fileID: 2812601504272205409, guid: 67a80d79e61088840bd9862bed34d489, type: 3}
-  palmMaxAngle: 12.5
-  vinePointCount: 100
-  vineMaxBranches: 5
-  vineMinBranches: 3
---- !u!114 &2191655137260673864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845170915950651333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67478573502ffac49bc97fdfdf8b03d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flowerPart: {fileID: 2297504814831194188, guid: 4a9970dbb2692bf48834dd55c2353617, type: 3}
-  flowerBud: {fileID: 5418489872966557892, guid: 4d6d21e9011361e4798d21fbddef088f, type: 3}
-  flowerPetal: {fileID: 3405937490084270718, guid: 7a4074192106dfd4d94f3907221ce469, type: 3}
-  flowerThorn: {fileID: 7241453398595778327, guid: c01075710e478d2458c0d4232a874590, type: 3}
-  flowerLeaf:
-  - {fileID: 1568425313963545155, guid: c50a327de41952649863da3601e1fddb, type: 3}
-  - {fileID: 2950567950319482511, guid: 34777fb1cf6acbc43a59b410f9b8e060, type: 3}
-  growSpeed: 30
-  incrementSize: 0.01
-  size: 2
-  pointRadiusMultiplier: 1
-  minPointDistance: 2
-  maxPointDistance: 3
-  petalCount: 40
-  petalSpread: 30
-  thornProbabilityDivisor: 7
-  leafProbabilityDivisor: 7
---- !u!114 &-5628631810251905698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845170915950651333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 451f007423fafe6469166cb8cca60e47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  part: {fileID: 2812601504272205409, guid: 67a80d79e61088840bd9862bed34d489, type: 3}
-  maxAngle: 12.5
-  maxPartCount: 14
-  subsequentScaleRatio: 0.95
-  upwardsBias: 0.925
-  chaosFactor: 175
---- !u!114 &4033373758346491290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845170915950651333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731bb9af5d3ae4b489b14edbf07663b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leaf: {fileID: 835482662954054714, guid: f22848dc8698e55489c02e4cc4f1f8f1, type: 3}
-  coconut: {fileID: 6178327081756610280, guid: 65990a71709e4984983bdf589ef4beca, type: 3}
-  leafOffsetAngle: 30
-  posOffset: 0.2
---- !u!114 &-4384968658595947601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845170915950651333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b7e59b426ef214db110b5c07e31b0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vinePart: {fileID: 3296905756077184392, guid: 7968571c23ee1464f9315e43549d1339, type: 3}
-  vineLeaf: {fileID: 7750939352459219629, guid: 910c9ce69d1f08945b6cae403fcd9074, type: 3}
-  childProbabilityDivisor: 30
-  stepDistance: 1
-  pointCountFalloff: 0.5
-  maxTerrainAngle: 10
-  leafProbabilityDivisor: 0
-  curviness: 20
-  size: 1
+  plantType: 1
+  palmSeed: {fileID: 5378297960628281716, guid: 728936b69ef5b224e8d7c4edead56e89, type: 3}
+  flowerSeed: {fileID: 6628133137414854894, guid: ea54567916afbc247ba103230507e227, type: 3}
+  vineSeed: {fileID: 7563734301971355631, guid: d3b684e32a0b90542b6b732b21c7a740, type: 3}

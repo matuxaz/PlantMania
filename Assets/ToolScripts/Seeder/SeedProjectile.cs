@@ -10,18 +10,16 @@ public class SeedProjectile : MonoBehaviour
     {
         Palm,
         Vine,
-        Rose
+        Flower
     };
 
-    public GameObject palmPart;
-    public float palmMaxAngle = 12.5f;
-    public int vinePointCount = 100;
-    public int vineMaxBranches = 5;
-    public int vineMinBranches = 3;
+    public GameObject palmSeed;
+    public GameObject flowerSeed;
+    public GameObject vineSeed;
 
     void Start()
     {
-        Destroy(gameObject, 15);
+        Destroy(gameObject, 2);
     }
     private bool collided;
     private void OnCollisionEnter(Collision c)
@@ -30,12 +28,12 @@ public class SeedProjectile : MonoBehaviour
         if (c.gameObject.tag != "Bullet" && !collided && c.gameObject.tag != "Enemy")
         {
             collided = true;
-            Destroy(gameObject, 5);
+            Destroy(gameObject, 0.5f);
 
             // SAPWNS ROSE
-            if (plantType.ToString() == "Rose")
+            if (plantType.ToString() == "Flower")
             {
-                SpawnRose(c);
+                SpawnFlower(c);
             }
 
             // SPAWNS PALM
@@ -66,32 +64,21 @@ public class SeedProjectile : MonoBehaviour
         }
     }
 
-    void SpawnRose(Collision collision)
+    void SpawnFlower(Collision collision)
     {
-        gameObject.GetComponent<FlowerGrow_v2>().spawnFlower(collision.contacts[0].point);
+        Instantiate(flowerSeed, collision.contacts[0].point, Quaternion.identity);
     }
 
     void SpawnPalm(Collision collision)
     {
-        GameObject newPart = Instantiate(palmPart, collision.contacts[0].point, Quaternion.Euler(RandomVectorYPlane(palmMaxAngle)));
-        newPart.GetComponent<PartSpawner>().SpawnNextPart(0);
+        GameObject palmSeedUnit = Instantiate(palmSeed, collision.contacts[0].point, Quaternion.identity);
+        palmSeedUnit.GetComponent<PalmSeed>().Plant();
     }
 
     void SpawnVine(Collision collision)
     {
-        int branchCount = Random.Range(vineMinBranches, vineMaxBranches + 1);
-        float angle;
-        Vector3 direction;
-        Vector3 spawnPoint;
-
-        for (int i = 0; i <= branchCount; i++)
-        {
-            angle = Random.Range(0, 360);
-            direction = Quaternion.AngleAxis(90, new Vector3(1, 0, 1)) * collision.contacts[0].normal;
-            direction = Quaternion.AngleAxis(angle, collision.contacts[0].normal) * direction;
-            spawnPoint = collision.contacts[0].point + collision.contacts[0].normal * 0.5f;
-            gameObject.GetComponent<Brancher_v3>().SpawnNextPart(spawnPoint, collision.contacts[0].normal, vinePointCount, direction);
-        }
+        GameObject vineSeedUnit = Instantiate(vineSeed, collision.contacts[0].point, Quaternion.identity);
+        vineSeedUnit.GetComponent<VineSeed>().SpawnVine(collision);
     }
 
     static Vector3 RandomVectorYPlane(float offset)

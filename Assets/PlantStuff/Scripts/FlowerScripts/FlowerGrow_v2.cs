@@ -11,33 +11,37 @@ public class FlowerGrow_v2 : MonoBehaviour
     public GameObject flowerThorn;
     public GameObject[] flowerLeaf;
     public float growSpeed = 1;
-    public float incrementSize = 0.05f;
+    public float incrementSize = 0.001f;
     public float size = 1;
     public float pointRadiusMultiplier = 1;
     public float minPointDistance = 1f;
     public float maxPointDistance = 2f;
     public int petalCount = 40;
     public float petalSpread = 60;
-    public int thornProbabilityDivisor = 100;
-    public int leafProbabilityDivisor = 100;
+    public int thornProbabilityDivisor = 50;
+    public int leafProbabilityDivisor = 50;
 
-    float time = 0;
+    float waterLevel = 0;
     float growth = 0;
     int pointCount = 4;
-    GameObject flowerGO;
-    SplineComputer flowerSC;
     int budCount = 4;
     GameObject[] buds;
     GameObject[] petals;
-    bool ready = false;
     float[] leanRatio;
+
+    GameObject flowerGO;
+    SplineComputer flowerSC;
+    SplineMesh flowerSM;
 
     Quaternion rotation;
 
+    Transform leavesStore;
+    Transform thornsStore;
+    Transform budsStore;
+    Transform petalsStore;
+
     public void spawnFlower(Vector3 coords)
     {
-        flowerGO = Instantiate(flowerPart); // change back later
-        flowerSC = flowerGO.GetComponent<SplineComputer>();
 
         buds = new GameObject[budCount];
         petals = new GameObject[petalCount];
@@ -52,19 +56,18 @@ public class FlowerGrow_v2 : MonoBehaviour
         for (int i = 0; i < pointCount; i++)
         {
             points[i].position = position;
-            Debug.Log(position);
             points[i].normal = Vector3.forward;
 
             distance += Random.Range(minPointDistance, maxPointDistance);
             position = coords + Random.insideUnitSphere * pointRadiusMultiplier;
-            position.y = distance + coords.y;
+            position.y = coords.y + distance;
         }
 
         flowerSC.SetPoints(points);
 
         for (int b = 0; b < budCount; b++)
         {
-            buds[b] = Instantiate(flowerBud, coords, flowerBud.transform.rotation * Quaternion.AngleAxis(b * 360 / budCount, Vector3.up));
+            buds[b] = Instantiate(flowerBud, coords, flowerBud.transform.rotation * Quaternion.AngleAxis(b * 360 / budCount, Vector3.up), budsStore);
             buds[b].transform.localScale *= 0.3f;
         }
 
@@ -72,28 +75,42 @@ public class FlowerGrow_v2 : MonoBehaviour
         {
             leanRatio[p] = Random.Range(1, 10) / 10f;
 
-            petals[p] = Instantiate(flowerPetal, coords - new Vector3(0, 0.3f, 0), flowerPetal.transform.rotation * Quaternion.AngleAxis(p * 360 / petalCount, Vector3.up));
+            petals[p] = Instantiate(flowerPetal, coords - new Vector3(0, 0.3f, 0), flowerPetal.transform.rotation * Quaternion.AngleAxis(p * 360 / petalCount, Vector3.up), petalsStore);
             petals[p].transform.localScale *= 0;
         }
 
-        ready = true;
+        //ready = true;
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        flowerGO = Instantiate(flowerPart, gameObject.transform, gameObject.transform);
+        flowerSC = flowerGO.GetComponent<SplineComputer>();
+        flowerSM = flowerGO.GetComponent<SplineMesh>();
 
+        flowerSM.GetChannel(0).clipTo = 0;
+
+        leavesStore = gameObject.transform.Find("Leaves");
+        thornsStore = gameObject.transform.Find("Thorns");
+        budsStore = gameObject.transform.Find("Buds");
+        petalsStore = gameObject.transform.Find("Petals");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Water()
     {
-        if (Time.time - time > 1 / growSpeed && growth < 1.0 - incrementSize && ready)
+        waterLevel += 0.03f;
+    }
+
+    void Grow()
+    {
+
+        if (waterLevel > 0)
         {
-            time = Time.time;
+
+            waterLevel -= incrementSize;
             growth += incrementSize;
 
-            SplineMesh flowerSM = flowerGO.GetComponent<SplineMesh>();
             flowerSM.GetChannel(0).clipTo = growth;
 
             rotation = flowerSC.Evaluate(growth).rotation;
@@ -115,33 +132,30 @@ public class FlowerGrow_v2 : MonoBehaviour
                 petals[p].transform.localScale = new Vector3(2f * leanRatio[p], 1f, 1.5f * leanRatio[p]) * growth / 3.5f;
             }
 
-            if(Random.Range(0, thornProbabilityDivisor) == 0)
+            if (Random.Range(0, thornProbabilityDivisor) == 0)
             {
                 SpawnThorn(flowerSC.EvaluatePosition(growth), rotation, flowerSC.Evaluate(growth).size);
-
-                //float thornSizeMiltiplier = Random.Range(0.5f, 1.5f);
-                //Quaternion thornRotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.forward);
-                //Vector3 thornPosition = flowerSC.EvaluatePosition(growth) + rotation * thornRotation * Vector3.up * - flowerSC.Evaluate(growth).size / 10; //-0.35f * (1f - Mathf.Pow(growth, 2.5f))
-
-                //var thorn = Instantiate(flowerThorn, thornPosition, rotation * thornRotation);
-                //thorn.transform.localScale = thorn.transform.localScale * size * thornSizeMiltiplier / 8;
-                //thorn.transform.Rotate(90, 0, 90);
             }
 
-            if(Random.Range(0, leafProbabilityDivisor) == 0 && 0.1f < growth && growth < 0.8f)
+            if (Random.Range(0, leafProbabilityDivisor) == 0 && 0.1f < growth && growth < 0.8f)
             {
                 SpawnLeaf(flowerSC.EvaluatePosition(growth), rotation, flowerSC.Evaluate(growth).size);
-
-                //float leafSizeMiltiplier = Random.Range(0.5f, 1.5f);
-                //Quaternion leafRotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.forward);
-                //Vector3 leafPosition = flowerSC.EvaluatePosition(growth) + rotation * leafRotation * Vector3.up * -flowerSC.Evaluate(growth).size / 10; //-0.35f * (1f - Mathf.Pow(growth, 2.5f))
-
-                //var leaf = Instantiate(flowerLeaf[Random.Range(0, flowerLeaf.Length)], leafPosition, rotation * leafRotation);
-                //leaf.transform.localScale = leaf.transform.localScale * size * leafSizeMiltiplier / 5;
-                //leaf.transform.Rotate(-180, 0, 0);
-                //leaf.transform.Rotate(0, -180, 0);
-                //leaf.transform.Rotate(0, 0, 90);
             }
+
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(growth < 1.0 - incrementSize)
+        {
+            Grow();
+        }
+        else
+        {
+            Destroy(this);
         }
     }
 
@@ -178,7 +192,7 @@ public class FlowerGrow_v2 : MonoBehaviour
         Quaternion thornRotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.forward);
         Vector3 thornPosition = position + rotation * thornRotation * Vector3.up * -stemSize / 10;
 
-        var thorn = Instantiate(flowerThorn, thornPosition, rotation * thornRotation);
+        var thorn = Instantiate(flowerThorn, thornPosition, rotation * thornRotation, thornsStore);
         thorn.transform.localScale = thorn.transform.localScale * size * thornSizeMiltiplier / 8;
         thorn.transform.Rotate(90, 0, 90);
     }
@@ -189,7 +203,7 @@ public class FlowerGrow_v2 : MonoBehaviour
         Quaternion leafRotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.forward);
         Vector3 leafPosition = position + rotation * leafRotation * Vector3.up * -stemSize / 10;
 
-        var leaf = Instantiate(flowerLeaf[Random.Range(0, flowerLeaf.Length)], leafPosition, rotation * leafRotation);
+        var leaf = Instantiate(flowerLeaf[Random.Range(0, flowerLeaf.Length)], leafPosition, rotation * leafRotation, leavesStore);
         leaf.transform.localScale = leaf.transform.localScale * size * leafSizeMiltiplier / 5;
         leaf.transform.Rotate(-180, 0, 0);
         leaf.transform.Rotate(0, -180, 0);

@@ -17,7 +17,7 @@ public class Brancher_v3 : MonoBehaviour
 
     int brokenAt = 0;
 
-    public void SpawnNextPart(Vector3 firstPointCoords, Vector3 surfaceNormal, int pointCount, Vector3 direction)
+    public IEnumerator SpawnNextPart(Vector3 firstPointCoords, Vector3 surfaceNormal, int pointCount, Vector3 direction)
     {
         //Add a Spline Computer component to this object
         GameObject vineGO = Instantiate(vinePart);
@@ -40,6 +40,8 @@ public class Brancher_v3 : MonoBehaviour
         float terrainAngle;
         float curveAngle;
 
+        List<GameObject> leaves = new List<GameObject>();
+
         bool broken = false;
 
         for (int i = 0; i < pointCount; i++)
@@ -54,14 +56,14 @@ public class Brancher_v3 : MonoBehaviour
 
             if (Random.Range(0, leafProbabilityDivisor) == 0 && !broken)
             {
-                SpawnLeaf(upDirection, currentPoint, rotationReference.transform.rotation);
+                leaves.Add(SpawnLeaf(upDirection, currentPoint, rotationReference.transform.rotation));
             }
 
             if (Random.Range(0, childProbabilityDivisor) == 0 && !broken)
             {
                 // child spawn code here
                 int newPointCount = (int)Mathf.Round((float)pointCount * pointCountFalloff);
-                gameObject.GetComponent<Brancher_v3>().SpawnNextPart(currentPoint, upDirection, newPointCount, direction);
+                StartCoroutine(gameObject.GetComponent<Brancher_v3>().SpawnNextPart(currentPoint, upDirection, newPointCount, direction));
             }
 
             currentPoint += stepDistance * direction;
@@ -149,6 +151,15 @@ public class Brancher_v3 : MonoBehaviour
             {
                 //Debug.DrawRay(points[i].position, Vector3.up * 10, Color.blue, 999);
             }
+
+            if(pointCount / 5 != 0)
+            {
+                if (i % (pointCount / 5) == 0)
+                {
+                    yield return null;
+                }
+            }
+
         }
 
         vineSC.SetPoints(points);
@@ -158,9 +169,21 @@ public class Brancher_v3 : MonoBehaviour
             SplineMesh flowerSM = vineGO.GetComponent<SplineMesh>();
             flowerSM.GetChannel(0).clipTo = (float)brokenAt / pointCount;
         }
+
+        StartCoroutine(SpawnLeaves(leaves));
     }
 
-    void SpawnLeaf(Vector3 up, Vector3 point, Quaternion rotation)
+    IEnumerator SpawnLeaves(List<GameObject> leaves)
+    {
+        foreach (GameObject leaf in leaves)
+        {
+            leaf.GetComponent<Renderer>().enabled = true;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    GameObject SpawnLeaf(Vector3 up, Vector3 point, Quaternion rotation)
     {
 
         float angle = Random.Range(0f, 360f);
@@ -171,7 +194,11 @@ public class Brancher_v3 : MonoBehaviour
 
         GameObject leaf = Instantiate(vineLeaf, point, rotation);
         leaf.transform.position += up * size * 0.1f;
-        leaf.transform.localScale *= size * 0.5f * Random.Range(0.5f, 1.5f);
+        leaf.transform.localScale *= size * 0.7f * Random.Range(0.5f, 1.5f);
+
+        leaf.GetComponent<Renderer>().enabled = false;
+
+        return leaf;
     }
 
     static RaycastHit Collision(Vector3 origin, Vector3 direction, float maxDistance)

@@ -11,6 +11,7 @@ TagManager:
   - Part
   - CameraPosition
   - WaterSource
+  - Water
   layers:
   - Default
   - TransparentFX

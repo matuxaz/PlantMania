@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3189549667527400667}
   - component: {fileID: 2012076674834797438}
   - component: {fileID: 4325885952245393332}
-  - component: {fileID: -8102760251814750993}
   - component: {fileID: 6642697719875022381}
   m_Layer: 0
   m_Name: PalmPart
@@ -85,24 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-8102760251814750993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2812601504272205409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 451f007423fafe6469166cb8cca60e47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  part: {fileID: 2812601504272205409}
-  maxAngle: 12.5
-  maxPartCount: 14
-  subsequentScaleRatio: 0.95
-  upwardsBias: 0.925
-  chaosFactor: 175
 --- !u!114 &6642697719875022381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,10 +93,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 2812601504272205409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731bb9af5d3ae4b489b14edbf07663b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 595a20a8b0f25d24f94a78d47eba5322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaf: {fileID: 835482662954054714, guid: f22848dc8698e55489c02e4cc4f1f8f1, type: 3}
-  coconut: {fileID: 6178327081756610280, guid: 65990a71709e4984983bdf589ef4beca, type: 3}
-  leafOffsetAngle: 30
-  posOffset: 0.2
+  part: {fileID: 2812601504272205409}
+  maxAngle: 12.5
+  subsequentScaleRatio: 0.95
+  upwardsBias: 0.925
+  chaosFactor: 175
+  partPopInDuration: 0.25
+  size: 100
+  growthCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -1.5315704
+      outSlope: -1.5315704
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14746636
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  gen: 0
