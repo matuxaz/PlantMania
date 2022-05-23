@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 794046040144567549}
   - component: {fileID: 1154602497507130663}
   - component: {fileID: 1154602497507130662}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: hiveBee
   m_TagString: Untagged
   m_Icon: {fileID: 0}

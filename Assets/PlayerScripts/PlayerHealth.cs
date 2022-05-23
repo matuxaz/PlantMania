@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     public float immuneTime = 0.5f;
     public float timer = 0;
 
+    public GameObject bloodVfx;
+
     public GameObject deathScreen;
     public GameObject playerUI;
 
@@ -45,6 +47,8 @@ public class PlayerHealth : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 pHealth -= hitDamage;
+                GameObject spVfx = Instantiate(bloodVfx, transform.position, transform.rotation); //creating and destroying explosion
+                Destroy(spVfx, 1);
             }
             timer = 0.00001f;
         }

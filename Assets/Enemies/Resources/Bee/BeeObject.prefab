@@ -155,14 +155,14 @@ MonoBehaviour:
   deathExplosion: {fileID: 6188372640795539148, guid: db36617ee011d3c4f9fc21af3ef5e28c, type: 3}
   rotationSpeed: 6
   moveSpeed: 4
-  viewDistance: 15
+  viewDistance: 30
   playerMask:
     serializedVersion: 2
     m_Bits: 128
   enemyHealthBar: {fileID: 253306021164635458}
   enemyHealth: 100
   maxHealth: 100
-  damage: 20
+  damage: 10
   chooseTime: 2
   elapsedTime: 0
   canFindPlayer: 0

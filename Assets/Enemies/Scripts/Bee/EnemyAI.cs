@@ -16,13 +16,13 @@ public class EnemyAI : MonoBehaviour
 
     public float rotationSpeed = 8f;
     public float moveSpeed = 3f;
-    public float viewDistance = 15f;
+    public float viewDistance = 30f;
     public LayerMask playerMask;
 
     [SerializeField] private Image enemyHealthBar; 
     public float enemyHealth = 100f;
     public float maxHealth = 100f;
-    public float damage = 20f;
+    public float damage = 10f;
 
     public float chooseTime = 2f;
     public float elapsedTime;

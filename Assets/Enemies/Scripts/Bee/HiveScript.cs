@@ -16,7 +16,6 @@ public class HiveScript : MonoBehaviour
     void Update()
     {
         loader.fillAmount = i / spawnTime;
-        Debug.Log(i / spawnTime * 100);
 
         if (!PauseMenuScript.gameIsPaused)
         {

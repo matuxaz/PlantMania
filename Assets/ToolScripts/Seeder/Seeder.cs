@@ -13,10 +13,11 @@ public class Seeder : MonoBehaviour
     public float fireRate = 15;
 
     [SerializeField] public Text ammoCounter;
-    public float ammo = 20;
+    public float ammo = 60;
 
     private float timeToFire;
     private Vector3 destination;
+    public GameObject muzzleVfx;
 
     private void Update()
     {
@@ -44,6 +45,8 @@ public class Seeder : MonoBehaviour
         }
         InstantiateSeed(firePoint);
         ammo -= 1;
+        GameObject mVfx = Instantiate(muzzleVfx, firePoint.position, firePoint.rotation); //muzzle effect
+        Destroy(mVfx, 1);
     }
 
     private void InstantiateSeed(Transform firePoint) //create a projectile at firepoint

@@ -15,6 +15,8 @@ public class Launcher : MonoBehaviour
     private float timeToFire;
     private Vector3 destination;
 
+    public GameObject muzzleVfx;
+
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && Time.time >= timeToFire && !PauseMenuScript.gameIsPaused)
@@ -37,6 +39,8 @@ public class Launcher : MonoBehaviour
         {
             destination = ray.GetPoint(1000);
         }
+        GameObject mVfx = Instantiate(muzzleVfx, firePoint.position, firePoint.rotation); //muzzle effect
+        Destroy(mVfx, 1);
         InstantiateRocket(firePoint);
     }
 
