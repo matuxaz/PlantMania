@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviour
 {
@@ -17,11 +18,27 @@ public class Launcher : MonoBehaviour
 
     public GameObject muzzleVfx;
 
+    private float oldTime;
+
+    [SerializeField] private Image rocketLoader;
+
     private void Update()
     {
+        if(Time.time >= timeToFire)
+        {
+            rocketLoader.enabled = false;
+        }
+        else
+        {
+            rocketLoader.enabled = true;
+            rocketLoader.fillAmount = Time.time / timeToFire;
+            Debug.Log(oldTime);
+        }
+
         if (Input.GetButtonDown("Fire1") && Time.time >= timeToFire && !PauseMenuScript.gameIsPaused)
         {
             timeToFire = Time.time + 1 / fireRate;
+            oldTime = timeToFire;
             Shoot();
         }
     }
