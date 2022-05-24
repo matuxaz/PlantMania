@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Dreamteck.Splines;
+using UnityEngine.UI;
 
 public class FlowerGrow_v2 : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class FlowerGrow_v2 : MonoBehaviour
     Transform budsStore;
     Transform petalsStore;
 
+    static Text score;
+    string color;
+
     public void spawnFlower(Vector3 coords)
     {
 
@@ -51,7 +55,8 @@ public class FlowerGrow_v2 : MonoBehaviour
         Vector3 position = coords;
         float distance = 0;
 
-        flowerPetal.GetComponent<MeshRenderer>().material = Resources.Load("RoseColors/Rose" + RandomRoseColor(), typeof(Material)) as Material;
+        color = RandomRoseColor();
+        flowerPetal.GetComponent<MeshRenderer>().material = Resources.Load("RoseColors/Rose" + color, typeof(Material)) as Material;
 
         for (int i = 0; i < pointCount; i++)
         {
@@ -95,6 +100,12 @@ public class FlowerGrow_v2 : MonoBehaviour
         thornsStore = gameObject.transform.Find("Thorns");
         budsStore = gameObject.transform.Find("Buds");
         petalsStore = gameObject.transform.Find("Petals");
+
+        if (score == null)
+        {
+            // If this line results in an error, check the following: Is the ScoreText named exactly "ScoreText"? does it have a Text Component in it? Does it exist, and is it enabled, by the time the first Pot appears?
+            score = GameObject.Find("Score").GetComponentInChildren<Text>();
+        }
     }
 
     public void Water()
@@ -155,6 +166,7 @@ public class FlowerGrow_v2 : MonoBehaviour
         }
         else
         {
+            UpdateScore();
             Destroy(this);
         }
     }
@@ -164,7 +176,7 @@ public class FlowerGrow_v2 : MonoBehaviour
         int colorNumber = Random.Range(0, 13125);
         string color;
 
-        Debug.Log(colorNumber);
+        //Debug.Log(colorNumber);
 
         if (colorNumber < 5000)
             color = "Red";
@@ -208,5 +220,46 @@ public class FlowerGrow_v2 : MonoBehaviour
         leaf.transform.Rotate(-180, 0, 0);
         leaf.transform.Rotate(0, -180, 0);
         leaf.transform.Rotate(0, 0, 90);
+    }
+
+    void UpdateScore()
+    {
+        int addScore;
+
+        if (color == "Red")
+        {
+            int.TryParse(score.text, out addScore);
+            addScore++;
+            score.text = addScore.ToString();
+            //score++;
+        }
+        else if (color == "White" || color == "Yellow")
+        {
+            int.TryParse(score.text, out addScore);
+            addScore += 2;
+            score.text = addScore.ToString();
+            //score += 2;
+        }
+        else if (color == "Pink")
+        {
+            int.TryParse(score.text, out addScore);
+            addScore += 3;
+            score.text = addScore.ToString();
+            //score += 3;
+        }
+        else if (color == "Purple" || color == "orange")
+        {
+            int.TryParse(score.text, out addScore);
+            addScore += 4;
+            score.text = addScore.ToString();
+            //score += 4;
+        }
+        else if (color == "Blue")
+        {
+            int.TryParse(score.text, out addScore);
+            addScore += 10;
+            score.text = addScore.ToString();
+            //score += 10;
+        }
     }
 }

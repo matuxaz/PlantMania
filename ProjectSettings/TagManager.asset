@@ -12,6 +12,7 @@ TagManager:
   - CameraPosition
   - WaterSource
   - Water
+  - Coconut
   layers:
   - Default
   - TransparentFX

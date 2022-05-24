@@ -17,6 +17,7 @@ public class ToolSwitch : MonoBehaviour
     [SerializeField] private Image ammoBar;
     [SerializeField] private Image ammoBarBackground;
 
+    [SerializeField] private Text seedTypeText;
     [SerializeField] private Text ammoText;
 
     [SerializeField] private Image infiniteAmmo;
@@ -84,10 +85,12 @@ public class ToolSwitch : MonoBehaviour
         if (selectedWeapon == 0)
         {
             ammoText.enabled = true;
+            seedTypeText.enabled = true;
         }
         else
         {
             ammoText.enabled = false;
+            seedTypeText.enabled = false;
         }
 
         if (selectedWeapon == 1)

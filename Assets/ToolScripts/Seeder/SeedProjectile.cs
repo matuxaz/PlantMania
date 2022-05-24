@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class SeedProjectile : MonoBehaviour
 {
-    public PlantType plantType = new PlantType();
+    //public PlantType plantType = new PlantType();
 
-    public enum PlantType
-    {
-        Palm,
-        Vine,
-        Flower
-    };
+    //public enum PlantType
+    //{
+    //    Palm,
+    //    Vine,
+    //    Flower
+    //};
+
+    public string plantType;
+    private bool collided;
 
     public GameObject palmSeed;
     public GameObject flowerSeed;
@@ -21,7 +24,7 @@ public class SeedProjectile : MonoBehaviour
     {
         Destroy(gameObject, 2);
     }
-    private bool collided;
+    
     private void OnCollisionEnter(Collision c)
     {
 
@@ -55,6 +58,10 @@ public class SeedProjectile : MonoBehaviour
         }
     }
 
+    public void SetSeedType(string seedType)
+    {
+        plantType = seedType;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy" && !collided)
@@ -81,8 +88,4 @@ public class SeedProjectile : MonoBehaviour
         vineSeedUnit.GetComponent<VineSeed>().SpawnVine(collision);
     }
 
-    static Vector3 RandomVectorYPlane(float offset)
-    {
-        return new Vector3(Random.Range(-offset, offset), 0, Random.Range(-offset, offset));
-    }
 }
