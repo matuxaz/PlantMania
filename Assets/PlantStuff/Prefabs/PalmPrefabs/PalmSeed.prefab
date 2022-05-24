@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4299898936091034858}
   - component: {fileID: 4132021983210687750}
   - component: {fileID: 5474395431093821215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PalmSeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}

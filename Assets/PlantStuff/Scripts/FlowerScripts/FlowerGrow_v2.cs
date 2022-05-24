@@ -41,7 +41,7 @@ public class FlowerGrow_v2 : MonoBehaviour
     Transform budsStore;
     Transform petalsStore;
 
-    static Text score;
+    public static Text score;
     string color;
 
     public void spawnFlower(Vector3 coords)
@@ -247,7 +247,7 @@ public class FlowerGrow_v2 : MonoBehaviour
             score.text = addScore.ToString();
             //score += 3;
         }
-        else if (color == "Purple" || color == "orange")
+        else if (color == "Purple" || color == "Orange")
         {
             int.TryParse(score.text, out addScore);
             addScore += 4;

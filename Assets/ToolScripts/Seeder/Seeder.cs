@@ -28,6 +28,8 @@ public class Seeder : MonoBehaviour
         seedType.Add("Palm");
         seedType.Add("Flower");
         seedType.Add("Vine");
+
+        seedTypeText.text = seedType[seedTypeIndex] + " seeder";
     }
 
     private void Update()

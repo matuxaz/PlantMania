@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
     public GameObject deathScreen;
     public GameObject playerUI;
 
+    public Text finalScore;
+
     private void Update()
     {
         HealthBar.fillAmount = pHealth / maxHealth;
@@ -59,6 +61,9 @@ public class PlayerHealth : MonoBehaviour
     {
         deathScreen.SetActive(true);
         playerUI.SetActive(false);
+
+        finalScore.text = FlowerGrow_v2.score.text;
+
         Time.timeScale = 0f;
         PauseMenuScript.gameIsPaused = true;
 
