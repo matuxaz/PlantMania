@@ -6,14 +6,11 @@ public class PalmSeed : MonoBehaviour
 {
 
     public GameObject part;
-    public float maxAngle = 12.5f;
-    public int leafMaxAngle = 30;
-    public int maxPartCount = 14;
-    public float growRate = 0.1f;
-    public int waterRequired = 10;
+    [SerializeField] private float maxAngle = 12.5f;
+    [SerializeField] private int maxPartCount = 14;
+    [SerializeField] private int waterRequired = 10;
 
-    float startTime;
-    int partCount = 1;
+    private int partCount = 1;
 
     int waterLevel = 0;
 
@@ -38,16 +35,11 @@ public class PalmSeed : MonoBehaviour
 
         leaves = gameObject.transform.Find("Leaves");
         leaf = leaves.GetComponent<LeafSpawner>();
-        leaf.SpawnLeaf(gameObject.transform);
+        leaf.SpawnLeaves(gameObject.transform);
         leaves.transform.localScale = Vector3.one * (partCount + 10) / (maxPartCount + 10);
 
         coconuts = gameObject.transform.Find("Coconuts");
         coconut = coconuts.GetComponent<CoconutSpawner>();
-    }
-
-    void Start()
-    {
-        startTime = Time.time;
     }
 
     void Update()

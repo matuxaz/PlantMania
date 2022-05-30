@@ -6,15 +6,15 @@ public class CoconutSpawner : MonoBehaviour
 {
 
     public GameObject coconut;
-    public float popInDuration = 0.5f;
+    [SerializeField] private float popInDuration = 0.5f;
 
-    int cocoCount;
+    private int cocoCount;
 
-    GameObject[] coconuts;
-    Vector3[] cocoScale;
+    private GameObject[] coconuts;
+    private Vector3[] cocoScale;
 
-    float startTime;
-    bool spawned = false;
+    private float startTime;
+    private bool spawned = false;
 
     [SerializeField]
     private AnimationCurve growthCurve;
@@ -37,7 +37,7 @@ public class CoconutSpawner : MonoBehaviour
 
     }
 
-    GameObject SpawnCoconut(Transform trunk)
+    private GameObject SpawnCoconut(Transform trunk)
     {
         Quaternion rotation = trunk.rotation * Quaternion.Euler(RandomVector(0f, 360f));
         float randomAngle = Random.Range(0f, 360f);

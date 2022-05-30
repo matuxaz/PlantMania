@@ -5,12 +5,12 @@ using UnityEngine;
 public class PartSpawner_v2 : MonoBehaviour
 {
     public GameObject part;
-    public float maxAngle = 12.5f;
-    public float subsequentScaleRatio = 0.95f;
-    public float upwardsBias = 0.925f;
-    public float chaosFactor = 175f;
-    public float partPopInDuration = 0.25f;
-    public float size = 100f;
+    [SerializeField] private float maxAngle = 12.5f;
+    [SerializeField] private float subsequentScaleRatio = 0.95f;
+    [SerializeField] private float upwardsBias = 0.925f;
+    [SerializeField] private float chaosFactor = 175f;
+    [SerializeField] private float partPopInDuration = 0.25f;
+    [SerializeField] private float size = 100f;
 
     [SerializeField]
     private AnimationCurve growthCurve;
@@ -52,14 +52,14 @@ public class PartSpawner_v2 : MonoBehaviour
         Grow();
     }
 
-    void Grow()
+    private void Grow()
     {
         float stage = (Time.time - startTime) / partPopInDuration;
 
         gameObject.transform.localScale = scaleTarget * growthCurve.Evaluate(stage);
     }
 
-    Quaternion CalculateRotation(int gen)
+    private Quaternion CalculateRotation(int gen)
     {
 
         float currUpwardsBias = Mathf.Pow(upwardsBias, gen) * chaosFactor;
