@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject playerUI;
 
     public Text finalScore;
+    public Text finalScoreInUI;
 
     private void Update()
     {
@@ -60,17 +61,10 @@ public class PlayerHealth : MonoBehaviour
     private void playerDeath()
     {
         deathScreen.SetActive(true);
-        playerUI.SetActive(false);
 
-        if(GetComponent("FlowerGrow_V2") != null)
-        {
-            finalScore.text = FlowerGrow_v2.score.text;
-        }
-        else
-        {
-            finalScore.text = "0";
-        }
-        
+        finalScore.text = finalScoreInUI.text;
+
+        playerUI.SetActive(false);
 
         Time.timeScale = 0f;
         PauseMenuScript.gameIsPaused = true;
