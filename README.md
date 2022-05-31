@@ -1,2 +1,2 @@
-# PlanterGame
+# PlantMania!
 Unity first person planting game
