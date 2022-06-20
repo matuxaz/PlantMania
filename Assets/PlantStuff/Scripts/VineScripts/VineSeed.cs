@@ -8,7 +8,7 @@ public class VineSeed : MonoBehaviour
     public int vineMaxBranches = 5;
     public int vineMinBranches = 3;
 
-    public void SpawnVine(Collision collision)
+    public void SpawnVine(Vector3 point, Vector3 normal)
     {
         Debug.Log("at spawn vine");
 
@@ -20,10 +20,10 @@ public class VineSeed : MonoBehaviour
         for (int i = 0; i <= branchCount; i++)
         {
             angle = Random.Range(0, 360);
-            direction = Quaternion.AngleAxis(90, new Vector3(1, 0, 1)) * collision.contacts[0].normal;
-            direction = Quaternion.AngleAxis(angle, collision.contacts[0].normal) * direction;
-            spawnPoint = collision.contacts[0].point + collision.contacts[0].normal* 0.5f;
-            StartCoroutine(gameObject.GetComponent<Brancher_v3>().SpawnNextPart(spawnPoint, collision.contacts[0].normal, vinePointCount, direction));
+            direction = Quaternion.AngleAxis(90, new Vector3(1, 0, 1)) * normal;
+            direction = Quaternion.AngleAxis(angle, normal) * direction;
+            spawnPoint = point + normal* 0.5f;
+            StartCoroutine(gameObject.GetComponent<Brancher_v3>().SpawnNextPart(spawnPoint, normal, vinePointCount, direction));
         }
     }
 

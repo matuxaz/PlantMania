@@ -167,7 +167,7 @@ MonoBehaviour:
   petalCount: 40
   petalSpread: 28
   thornProbabilityDivisor: 50
-  leafProbabilityDivisor: 50
+  leafProbabilityDivisor: 70
 --- !u!135 &-5009054568398171178
 SphereCollider:
   m_ObjectHideFlags: 0

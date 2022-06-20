@@ -85,7 +85,7 @@ public class SeedProjectile : MonoBehaviour
     void SpawnVine(Collision collision)
     {
         GameObject vineSeedUnit = Instantiate(vineSeed, collision.contacts[0].point, Quaternion.identity);
-        vineSeedUnit.GetComponent<VineSeed>().SpawnVine(collision);
+        vineSeedUnit.GetComponent<VineSeed>().SpawnVine(collision.contacts[0].point, collision.contacts[0].normal);
     }
 
 }

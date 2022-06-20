@@ -194,7 +194,7 @@ public class Brancher_v3 : MonoBehaviour
 
         GameObject leaf = Instantiate(vineLeaf, point, rotation);
         leaf.transform.position += up * size * 0.1f;
-        leaf.transform.localScale *= size * 0.7f * Random.Range(0.5f, 1.5f);
+        leaf.transform.localScale *= size * 0.5f * Random.Range(0.5f, 1.5f);
 
         leaf.GetComponent<Renderer>().enabled = false;
 

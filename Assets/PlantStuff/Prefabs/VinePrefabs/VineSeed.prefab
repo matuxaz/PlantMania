@@ -66,5 +66,5 @@ MonoBehaviour:
   pointCountFalloff: 0.5
   maxTerrainAngle: 10
   leafProbabilityDivisor: 1
-  curviness: 20
+  curviness: 30
   size: 1

@@ -418,15 +418,7 @@ MonoBehaviour:
   _sampleMode: 0
   _subscribers:
   - {fileID: 1096163896538922070}
-  nodes:
-  - node: {fileID: 1913202627747349438}
-    pointIndex: 0
-  - node: {fileID: 2033933252917363586}
-    pointIndex: 1
-  - node: {fileID: 3372071009173328859}
-    pointIndex: 2
-  - node: {fileID: 2417253118829858459}
-    pointIndex: 3
+  nodes: []
 --- !u!33 &4467885066699445003
 MeshFilter:
   m_ObjectHideFlags: 0
